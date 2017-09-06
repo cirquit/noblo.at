@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="author" content="cirquit" />
+        <meta name="viewport" content="width=device-width" />
+        <meta http-equiv="Cache-Control" content="max-age=86400, must-revalidate" />
+        <title>No blo.at</title>
+        <link rel="stylesheet" type="text/css" href="../css/font.css" />
+        <link rel="stylesheet" type="text/css" href="../css/theprofessional.css" />
+        <link rel="stylesheet" type="text/css" href="../css/syntax.css" />
+        <link rel="stylesheet" type="text/css" href="../css/font-awesome.css" />
+    </head>
+    <body>
+      <div class="highbar">&nbsp;</div>
+        <div id="header">
+          <div class="box">
+            <div id="logo" class="name">
+              <h2><a href="../">No blo.at</a></h2>
+            </div>
+            <div id="navigation" class="pageslinks">
+              <nav class="menuNav">
+                <div class="menuItems">
+                <a href="../" class="posts/2017-09-06-cpp-templates.md">Home</a>
+                <a href="../archive.html" class="posts/2017-09-06-cpp-templates.md">Posts</a>
+                <a href="../about.html" class="posts/2017-09-06-cpp-templates.md">About</a>
+                </div>
+              </nav>
+            </div>
+        </div>
+        </div>
+        <div class="container-gallery">
+        <div id="content" class="inside">
+            <div class="info">
+    <h2> C++, OpenCV, ImGUI CMake Templates <span class="header-date">September  6, 2017</p> <h2></h2>
+</div>
+
+<p>This is an example of code, text and Latex.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">
+<span class="kw">import </span><span class="dt">Control.Monad</span>
+
+
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    forM_ [<span class="dv">1</span><span class="fu">..</span><span class="dv">100</span>] <span class="fu">$</span> \i <span class="ot">-&gt;</span> 
+        when (i <span class="ot">`mod`</span> <span class="dv">3</span> <span class="fu">==</span> <span class="dv">0</span>) <span class="fu">$</span> putStrLn <span class="st">&quot;Foo&quot;</span>
+        when (i <span class="ot">`mod`</span> <span class="dv">5</span> <span class="fu">==</span> <span class="dv">0</span>) <span class="fu">$</span> putStrLn <span class="st">&quot;Bar&quot;</span>
+        unless (i <span class="ot">`mod`</span> <span class="dv">3</span> <span class="fu">==</span> <span class="dv">0</span> <span class="fu">&amp;&amp;</span> i <span class="ot">`mod`</span> <span class="dv">5</span>) <span class="fu">$</span> print i</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">
+<span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span>
+
+<span class="dt">int</span> main()
+{
+    <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Hello World!</span><span class="sc">\n</span><span class="st">&quot;</span>;
+
+    <span class="cf">if</span> (<span class="dv">1</span> == <span class="dv">2</span>)
+        then {
+            <span class="cf">return</span> <span class="dv">1</span>;
+        } <span class="cf">else</span> {
+            <span class="cf">switch</span> (x) {
+                <span class="dv">1</span>: 
+                    <span class="cf">break</span>;
+                <span class="dv">2</span>:
+                    <span class="cf">break</span>;
+            }
+        }
+}
+
+<span class="kw">template</span>&lt;T&gt;
+T mappend(T a, <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; b){
+    <span class="cf">return</span> a + b;
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span class="kw">set</span>(<span class="ot">PROJECT_NAME</span> OpenCVTemplate)
+<span class="kw">set</span>(EXEC_NAME opencv-exec)
+<span class="kw">set</span>(LIB_NAME opencvexample)
+<span class="kw">set</span>(TEST_NAME opencv-test)
+
+<span class="co"># image directory name (used in the src/CMakeLists.txt)</span>
+<span class="kw">set</span>(IMAGE_DIR images)
+
+<span class="kw">project</span> (<span class="va">${PROJECT_NAME}</span>)
+<span class="kw">cmake_minimum_required</span> (<span class="ot">VERSION</span> 3.5.1)
+
+<span class="co"># set compiler flags</span>
+<span class="kw">set</span> (<span class="va">CMAKE_CXX_COMPILER</span>=gcc)
+<span class="kw">set</span> (<span class="va">CMAKE_CXX_FLAGS</span> <span class="st">&quot;</span><span class="va">${CMAKE_CXX_FLAGS}</span><span class="st"> -std=c++14 -g&quot;</span>) <span class="co">#-pthread -Wall -Wextra -Werror -Wfatal-errors -pedantic -g&quot;)</span>
+
+<span class="co"># OpenCV Flag</span>
+<span class="kw">if</span> (WITH_OPENCV_DEBUG)
+  <span class="fu">MESSAGE</span>(STATUS <span class="st">&quot;OpenCV enabled&quot;</span>)
+  <span class="kw">add_definitions</span>(-DOPENCV_DEBUG)
+  <span class="kw">find_package</span>( OpenCV <span class="ot">REQUIRED</span> )
+<span class="kw">else</span>()
+  <span class="fu">MESSAGE</span>(STATUS <span class="st">&quot;OpenCV disabled. To enable it, use -DWITH_OPENCV_DEBUG=ON&quot;</span>)
+<span class="kw">endif</span>()
+
+<span class="co"># add the code</span>
+<span class="kw">add_subdirectory</span>(src)
+<span class="kw">add_subdirectory</span>(test)</code></pre></div>
+
+        </div>
+        </div>
+    </body>
+</html>
