@@ -74,6 +74,11 @@ div#content, div#content p {
   font-family: "Montserrat";
   font-size: 15px; }
 
+div#content p code {
+  background-color: #686472;
+  margin-left: 2px;
+  margin-right: 2px; }
+
 #footer {
   clear: both;
   color: #675f6d;
